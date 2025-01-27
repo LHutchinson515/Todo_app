@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo tasks</title>
+</head>
+
+<body>
+
+
+
+    <div>
+        <h1>To Do List</h1>
+
+        <form action="/add" method="post">
+            <div>
+                <label>Todo task</label>
+                <input type="text" name="task" placeholder="Enter a Task">
+                <button type="submit">Add a Task</button>
+            </div>
+        </form>
+</div>
+        <hr>
+
+        {% for todo in todo_list %}
+<div>
+
+    <p> {{todo.id}} : {{todo.task}} : {{todo.complete}} </p>#
+
+    {% if todo.complete == false %}
+
+    <p> Task is yet to be completed. <a href = "/update/{{todo.id}}" > Please mark as completed once finished </a> </p>
+
+    {% else %}
+
+    <p> Task has been completed, well done </p>
+
+    {% endif %}
+
+    <a href="/delete/{{todo.id}}" > delete </a>
+
+    </div>
+
+    {% endfor %}
+
+    </div>
+
+{% if message %}
+    <p>{{message}}</p>
+{% endif %}
+
+</body>
+
+</html>
